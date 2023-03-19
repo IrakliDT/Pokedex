@@ -10,10 +10,10 @@ function showPokemon() {
         <img src="${image}" alt="${image}">
    </div>
     <div class="info">
-        <h2>${name}</h2>
-        <p>${type}</p>
-        <p>${id}</p>
-    </div>
+        <h2 class="row justify-content-center">${name}</h2>
+        <p class="mt-5">Type: ${type}</p>
+        <p># ${id}</p>
+    </div>        
     `
 }   
 

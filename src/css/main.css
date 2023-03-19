@@ -22,16 +22,25 @@ img{
 }
 
 .info{
-  width: 30%;
+  width: 25%;
   border: solid 1px black;
   border-radius: 15px;
   padding: 15px;
   font-size: 20px;
 }
+  
+
 
 @media screen and (max-width: 568px) {
   .info{
     font-size: 10px; 
+  }
+  h2{
+    font-size: 15px;
+  }
+  .img-container{
+    width:252px;
+
   }
   
 }
