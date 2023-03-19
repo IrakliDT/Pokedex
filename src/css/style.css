@@ -1,43 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+
 body {
-  background-color: rgb(81, 88, 70);
-  color: white;
-  margin: 0;
+	background: hwb(59 51% 15%);
+	background: -webkit-linear-gradient(to right, #D4D3DD, #c9efbb);
+	background: linear-gradient(to right, #D4D3DD, #ecefbb);
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Lato';
+	margin: 0;
 }
 
-.main {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 40px;
-  margin: 0 auto;
+a{
+  text-decoration: none;
+  color: #000;
 }
 
-#pokedex {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  grid-gap: 20px;
-  padding-inline-start: 0;
+h1 {
+	letter-spacing: 3px;
+}
+img{
+  width: 200px;
+}
+img:hover{
+  scale: 1.1;
+  cursor: pointer;
+  transition: all 0.5s ease;
 }
 
-.pokemons {
-  width: 320px;
-  height: auto;
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: space-between;
+	justify-content: center;
+	margin: 0 auto;
+  max-width: 1280px;
 }
 
-.card {
-  list-style: none;
-  padding: 40px;
-  background-color: #f4f4f4;
-  color: #222;
-  text-align: center;
+.pokemon {
+	background-color: #eee;
+	border-radius: 20px;
+	box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+	margin: 10px;
+	padding: 20px;
+	text-align: center;
 }
 
-.card-title {
-  text-transform: capitalize;
-  margin-bottom: 0px;
-  font-size: 32px;
-  font-weight: normal;
+
+.pokemon .img-container {
+	background-color: rgba(255, 255, 255, 0.6);
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	text-align: center;
 }
 
-.card-image {
-  height: 180px;
+.pokemon .img-container img {
+	max-width: 90%;
 }
+
+.pokemon .info {
+	margin-top: 20px;
+}
+
+.pokemon .number {
+	background-color: rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	font-size: 0.8em;
+	padding: 5px 10px;
+}
+
+.pokemon .name {
+	margin: 15px 0 7px;
+	letter-spacing: 1px;
+}
+
+.info h3{
+  font-size: 1.2em;
+}
+
+
+
+
+
+
+
+
+

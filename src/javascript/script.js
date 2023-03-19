@@ -1,39 +1,78 @@
+const poke_container = document.getElementById('poke_container');
+const pokemons_number = 150;
 
-const pokeAPI = "https://pokeapi.co/api/v2/pokemon/";
-const IMGPATH = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/1.png"
+const colors = {
+  fire: '#DE999E',
+  grass: '#DEFDE0',
+  electric: '#FCF7DE',
+  water: '#DEF3FD',
+  ground: '#f4e7da',
+  rock: '#d5d5d4',
+  fairy: '#fceaff',
+  poison: '#98d7a5',
+  bug: '#f8d5a3',
+  dragon: '#97b3e6',
+  psychic: '#eaeda1',
+  flying: '#F5F5F5',
+  fighting: '#E6E0D4',
+  normal: '#F5F5F5'
+};
+
+const main_types = Object.keys(colors);
 
 
+const fetchPokemons = async () => {
+    for (let i = 1; i <= pokemons_number; i++) {
+        await getPokemon(i);
+    }
+  };
 
-
-getPokemon(pokeAPI)
-async function getPokemon(url) {
+const getPokemon = async (id) => {
+    const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     const res = await fetch(url);
-    console.log(res)
-    const data = await res.json();
-    console.log(data)
-    const pokemons = data.results
-    displayPokemons(pokemons)
+    const pokemon = await res.json();
+    createPokemonCard(pokemon);
+
 }
 
-const PokeHTML = document.getElementById("main");
 
-// show pokemon
 
-function displayPokemons (pokemons) {
-   console.log(pokemons)
-   PokeHTML.innerHTML = ""
+function createPokemonCard(pokemon) {
+    const pokemonEl = document.createElement('div');
 
-    pokemons.forEach((pokemon) => {
-       const PokeEl = document.createElement("div");
-        PokeEl.classList.add("pokemon");
-        PokeEl.innerHTML = `
-        <div> class="card">
-            <img class="card-image" src="${pokemons.image}"/>
-            <h2 class="card-title">${pokemons.id}. ${pokemons.name}</h2>
-            <p class="card-subtitle">Type: ${pokemons.type}</p>
+    pokemonEl.classList.add('pokemon');
+    const poke_types = pokemon.types.map(type => type.type.name);
+    const type = main_types.find(type => poke_types.indexOf(type) > -1);
+    const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
+    const color = colors[type];
+
+    pokemonEl.style.backgroundColor = color;
+
+    const pokeInnerHTML = `
+    <a href="/pokemon.html?${pokemon.id}"> 
+        <div class="img-container">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png" alt="${name}">
         </div>
-        `
-        PokeHTML.appendChild(PokeEl)
+        <div class="info">
+            <span class="number">#${pokemon.id.toString().padStart(3, '0')}</span>
+            <h3 class="name">${name}</h3>
+            <small class="type">Type: <span>${type}</span></small>
+        </div>
+    </a>   
+    `
+    pokemonEl.addEventListener('click', () => {
+        localStorage.setItem('pokemonId', pokemon.id);
+        localStorage.setItem('pokemonName', name);
+        localStorage.setItem('pokemonType', type);
+        localStorage.setItem('pokemonImage', `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`);
     })
 
-}    
+    pokemonEl.innerHTML = pokeInnerHTML;
+    poke_container.appendChild(pokemonEl);
+
+    
+}
+
+
+fetchPokemons();
+
