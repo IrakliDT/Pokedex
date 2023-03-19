@@ -1,3 +1,3 @@
 # Pokedex
 
-live site: https://phenomenal-babka-a963fe.netlify.app/
+live site: https://sparkling-travesseiro-4b1333.netlify.app/
